@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:flutter/services.dart';
-//import 'package:tencent_cos/tencent_cos.dart';
+import 'package:tencent_cos/tencent_cos.dart';
+import 'package:image_picker/image_picker.dart';
 
 void main() => runApp(new MyApp());
 
@@ -22,22 +25,25 @@ class _MyAppState extends State<MyApp> {
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-//    String platformVersion;
-//    // Platform messages may fail, so we use a try/catch PlatformException.
-//    try {
-//      platformVersion = await TencentCos.platformVersion;
-//    } on PlatformException {
-//      platformVersion = 'Failed to get platform version.';
-//    }
-//
-//    // If the widget was removed from the tree while the asynchronous platform
-//    // message was in flight, we want to discard the reply rather than calling
-//    // setState to update our non-existent appearance.
-//    if (!mounted) return;
-//
-//    setState(() {
-//      _platformVersion = platformVersion;
-//    });
+    File image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    print("abc" + image.path);
+
+    TencentCos.uploadByFile(
+        "ap-beijing",
+        "1253631018",
+        "barber-1253631018",
+        "AKIDkfeoNDD81j3V577NyRjXb4fEIg0dB1gx",
+        "0M1GEBuPBY4lHCIa64V4j12Gg2PJJKx4",
+        "5e5eea7edfebaef7176a95be9b4b4123163ace2d30001",
+        "1538044424",
+        "pic/dynamic/video_dynamic/1/4.png",
+        image.path);
+    TencentCos.setMethodCallHandler(_handleMessages);
+  }
+
+  Future<Null> _handleMessages(MethodCall call) async {
+    print(call.method);
+    print(call.arguments);
   }
 
   @override

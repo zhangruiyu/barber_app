@@ -1,17 +1,11 @@
 package com.ruiyu.tencentcos
 
 import android.util.Log
-import com.tencent.cos.xml.exception.CosXmlClientException
-import com.tencent.cos.xml.exception.CosXmlServiceException
-import com.tencent.cos.xml.listener.CosXmlResultListener
-import com.tencent.cos.xml.model.CosXmlRequest
-import com.tencent.cos.xml.model.CosXmlResult
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.PluginRegistry.Registrar
-import java.util.HashMap
 
 class TencentCosPlugin(private val registrar: Registrar, private val channel: MethodChannel) : MethodCallHandler {
     companion object {
@@ -26,7 +20,20 @@ class TencentCosPlugin(private val registrar: Registrar, private val channel: Me
         Log.e("TencentCosPlugin", call.method)
         when {
             call.method == "TencentCos.uploadFile" -> {
-                val localUrl = call.argument<Any>("url").toString()
+
+                val localCredentialProvider = LocalSessionCredentialProvider(call.argument<Any>("secretId").toString(),
+                        call.argument<Any>("secretKey").toString(), call.argument<Any>("sessionToken").toString(), java.lang.Long.parseLong(call.argument<Any>("expiredTime").toString())
+                )
+                val region = call.argument<String>("region")
+                val appid = call.argument<String>("appid")
+                val bucket = call.argument<String>("bucket")
+                val cosPath = call.argument<String>("cosPath")
+                val localPath = call.argument<String>("localPath")
+                CosUploadFile.upLoadFile(registrar.context(), appid, region, bucket, cosPath, localPath, localCredentialProvider,channel)
+
+
+
+              /*  val localUrl = call.argument<Any>("url").toString()
                 Log.e("TencentCosPlugin", localUrl)
                 val qServiceCfg = QServiceCfg(registrar.context(), call.argument<Any>("region").toString(), call.argument<Any>("appid").toString(), call.argument<Any>("secretId").toString(),
                         call.argument<Any>("secretKey").toString(), call.argument<Any>("sessionToken").toString(), java.lang.Long.parseLong(call.argument<Any>("expiredTime").toString()), call.argument<Any>("uploadCosPath").toString(), localUrl)
@@ -59,7 +66,7 @@ class TencentCosPlugin(private val registrar: Registrar, private val channel: Me
                         channel.invokeMethod("message", stringBuilder.toString())
                         Log.e("TencentCosPlugin", "onFailed " + stringBuilder.toString())
                     }
-                })
+                })*/
             }
             else -> result.notImplemented()
         }

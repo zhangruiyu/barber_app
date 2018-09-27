@@ -8,21 +8,23 @@ class TencentCos {
   static void uploadByFile(
       String region,
       String appid,
+      String bucket,
       String secretId,
       String secretKey,
       String sessionToken,
       expiredTime,
-      String uploadCosPath,
-      String url) {
+      String cosPath,
+      String localPath) {
     _channel.invokeMethod('TencentCos.uploadFile', {
       'region': region,
       'appid': appid,
+      'bucket': bucket,
       'secretId': secretId,
       'secretKey': secretKey,
       'expiredTime': expiredTime,
       'sessionToken': sessionToken,
-      'uploadCosPath': uploadCosPath,
-      'url': url,
+      'cosPath': cosPath,
+      'localPath': localPath,
     });
   }
 
