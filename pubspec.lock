@@ -463,6 +463,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.5.3"
+  tencent_cos:
+    dependency: "direct main"
+    description:
+      path: "plugin/tencent_cos"
+      relative: true
+    source: path
+    version: "0.0.1"
   term_glyph:
     dependency: transitive
     description:
