@@ -59,7 +59,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           cos.tmpSecretKey,
           cos.sessionToken,
           cos.expiredTime,
-          cos.cosPath + filename,
+          "${cos.cosPath}/$filename",
           image.path);
       TencentCos.setMethodCallHandler(_handleMessages);
     });
