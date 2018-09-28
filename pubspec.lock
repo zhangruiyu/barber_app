@@ -192,6 +192,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.3"
+  image_picker:
+    dependency: "direct main"
+    description:
+      name: image_picker
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.10"
   intl:
     dependency: "direct main"
     description:
@@ -466,9 +473,9 @@ packages:
   tencent_cos:
     dependency: "direct main"
     description:
-      path: "plugin/tencent_cos"
-      relative: true
-    source: path
+      name: tencent_cos
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.0.1"
   term_glyph:
     dependency: transitive

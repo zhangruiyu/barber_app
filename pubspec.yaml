@@ -44,8 +44,8 @@ dependencies:
 #  flutter_alipay: "^0.1.0"
   flutter_native_image:
     git: https://github.com/btastic/flutter_native_image.git
-  tencent_cos:
-    path: ./plugin/tencent_cos
+  tencent_cos: "^0.0.1"
+  image_picker: any
 
 dev_dependencies:
   flutter_test:

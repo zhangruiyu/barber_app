@@ -16,6 +16,7 @@ import 'package:barber_app/core/store/queue/entitys/add_store_queue_entity.dart'
 import 'package:barber_app/core/store/subjects/entitys/affirm_dialog_show_entity.dart';
 import 'package:barber_app/core/wallet/entitys/wallet_entity.dart';
 import 'package:barber_app/helpers/net_work.dart';
+import 'package:barber_app/models/cos.dart';
 
 class RequestHelper {
   static Future<LoginEntity> login(String tel, String password) {
@@ -188,5 +189,10 @@ class RequestHelper {
         (json) => PayCardBagSuccessEntity.fromJson(json),
         '/store/common/payStoreCardBag',
         {'card_id': cardBagId, 'paypassword': paypassword});
+  }
+
+  static Future<CosEntity> periodEffectiveSign(int type) {
+    return RequestClient.request<CosEntity>((json) => CosEntity.fromJson(json),
+        '/cos/common/periodEffectiveSign', {'type': type});
   }
 }

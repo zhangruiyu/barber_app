@@ -4,14 +4,23 @@ PODS:
     - Flutter
   - fluttertoast (0.0.2):
     - Flutter
+  - image_picker (0.0.1):
+    - Flutter
   - path_provider (0.0.1):
     - Flutter
+  - QCloudCore (5.5.2)
+  - QCloudCOSXML (5.5.2):
+    - QCloudCore (= 5.5.2)
+    - QCloudCOSXML/Transfer (= 5.5.2)
+  - QCloudCOSXML/Transfer (5.5.2):
+    - QCloudCore (= 5.5.2)
   - share (0.5.2):
     - Flutter
   - shared_preferences (0.0.1):
     - Flutter
   - tencent_cos (0.0.1):
     - Flutter
+    - QCloudCOSXML
   - url_launcher (0.0.1):
     - Flutter
 
@@ -19,11 +28,17 @@ DEPENDENCIES:
   - Flutter (from `.symlinks/flutter/ios`)
   - flutter_native_image (from `.symlinks/plugins/flutter_native_image/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
+  - image_picker (from `.symlinks/plugins/image_picker/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - share (from `.symlinks/plugins/share/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
   - tencent_cos (from `.symlinks/plugins/tencent_cos/ios`)
   - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - QCloudCore
+    - QCloudCOSXML
 
 EXTERNAL SOURCES:
   Flutter:
@@ -32,6 +47,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_native_image/ios"
   fluttertoast:
     :path: ".symlinks/plugins/fluttertoast/ios"
+  image_picker:
+    :path: ".symlinks/plugins/image_picker/ios"
   path_provider:
     :path: ".symlinks/plugins/path_provider/ios"
   share:
@@ -47,10 +64,13 @@ SPEC CHECKSUMS:
   Flutter: 9d0fac939486c9aba2809b7982dfdbb47a7b0296
   flutter_native_image: 3d9f735f47bf8af7dea28056bf90c03ad4ce531b
   fluttertoast: ad0527b15297baf11349f3f581dae4d40f24f340
+  image_picker: ee00aab0487cedc80a304085219503cc6d0f2e22
   path_provider: 09407919825bfe3c2deae39453b7a5b44f467873
+  QCloudCore: b91a762d280f0a80cc6f537fd186ac43a4a3025e
+  QCloudCOSXML: a30ab17f45b0cbbcbb218a3677298498e8748a22
   share: 222b5dcc8031238af9d7de91149df65bad1aef75
   shared_preferences: 5a1d487c427ee18fcd3ea1f2a131569481834b53
-  tencent_cos: d451e9c2133c0b8cd4193e551f354dcc004b19b3
+  tencent_cos: 35e81f9bbe3282e834e8bff1b1499eaae6828210
   url_launcher: 92b89c1029a0373879933c21642958c874539095
 
 PODFILE CHECKSUM: 1e5af4103afd21ca5ead147d7b81d06f494f51a2

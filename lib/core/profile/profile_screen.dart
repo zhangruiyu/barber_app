@@ -1,3 +1,7 @@
+import 'dart:async';
+import 'dart:io';
+import 'package:path/path.dart' as file;
+
 import 'package:barber_app/base/BasePageRoute.dart';
 import 'package:barber_app/core/main/account/entitys/account_entity.dart';
 import 'package:barber_app/core/profile/edit_profile_string_screen.dart';
@@ -6,6 +10,9 @@ import 'package:barber_app/utils/toast_utils.dart';
 import 'package:barber_app/widget/Toolbar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:tencent_cos/tencent_cos.dart';
 
 class ProfileScreen extends BasePageRoute {
   final UserInfo userInfo;
@@ -38,6 +45,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
     addressEditingController.dispose();
   }
 
+  void uploadAvatar() async {
+    File image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    print("abc" + image.path);
+    String filename = file.basename(image.path);
+
+    RequestHelper.periodEffectiveSign(1).then((cos) {
+      TencentCos.uploadByFile(
+          "ap-beijing",
+          "1253631018",
+          "barber-1253631018",
+          cos.tmpSecretId,
+          cos.tmpSecretKey,
+          cos.sessionToken,
+          cos.expiredTime,
+          cos.cosPath + filename,
+          image.path);
+      TencentCos.setMethodCallHandler(_handleMessages);
+    });
+  }
+
+  Future<Null> _handleMessages(MethodCall call) async {
+    print(call.method);
+    print(call.arguments);
+    if (call.method == "onProgress") {
+    } else if (call.method == "onFailed") {
+    } else if (call.method == "onSuccess") {}
+  }
+
   void handleSexRadioValueChanged(int value) {
     setState(() {
       pageCacheUser.gender = value;
@@ -45,8 +80,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   void commitChange() {
-    RequestHelper
-        .reviseProfile(pageCacheUser.gender, pageCacheUser.nickname,
+    RequestHelper.reviseProfile(pageCacheUser.gender, pageCacheUser.nickname,
             pageCacheUser.signature, pageCacheUser.avatar)
         .then((data) {
       ToastUtils.toast('信息修改成功');
@@ -71,10 +105,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
         children: [
           new Padding(
             padding: const EdgeInsets.only(bottom: 20.0, top: 30.0),
-            child: new CircleAvatar(
-                radius: 30.0,
-                backgroundImage:
-                    new CachedNetworkImageProvider(pageCacheUser.avatar)),
+            child: GestureDetector(
+              onTap: () {
+                uploadAvatar();
+              },
+              child: new CircleAvatar(
+                  radius: 30.0,
+                  backgroundImage:
+                      new CachedNetworkImageProvider(pageCacheUser.avatar)),
+            ),
           ),
           ListTile(
             onTap: () async {
