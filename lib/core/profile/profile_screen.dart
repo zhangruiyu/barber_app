@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:barber_app/helpers/navigator_helper.dart';
 import 'package:path/path.dart' as file;
 
 import 'package:barber_app/base/BasePageRoute.dart';
@@ -31,6 +32,7 @@ class ProfileScreen extends BasePageRoute {
 class _ProfileScreenState extends State<ProfileScreen> {
   TextEditingController addressEditingController;
   UserInfo pageCacheUser;
+  String avatarLocalPath;
 
   @override
   void initState() {
@@ -47,22 +49,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   void uploadAvatar() async {
     File image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    print("abc" + image.path);
-    String filename = file.basename(image.path);
-
-    RequestHelper.periodEffectiveSign(1).then((cos) {
-      TencentCos.uploadByFile(
-          "ap-beijing",
-          "1253631018",
-          "barber-1253631018",
-          cos.tmpSecretId,
-          cos.tmpSecretKey,
-          cos.sessionToken,
-          cos.expiredTime,
-          "${cos.cosPath}/$filename",
-          image.path);
-      TencentCos.setMethodCallHandler(_handleMessages);
-    });
+    avatarLocalPath = image?.path;
   }
 
   Future<Null> _handleMessages(MethodCall call) async {
@@ -70,7 +57,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
     print(call.arguments);
     if (call.method == "onProgress") {
     } else if (call.method == "onFailed") {
-    } else if (call.method == "onSuccess") {}
+      ToastUtils.toast('头像上传失败');
+      NavigatorHelper.showLoadingDialog(false);
+    } else if (call.method == "onSuccess") {
+      commitChange(call.arguments['cosPath']);
+    }
   }
 
   void handleSexRadioValueChanged(int value) {
@@ -79,12 +70,39 @@ class _ProfileScreenState extends State<ProfileScreen> {
     });
   }
 
-  void commitChange() {
+  //检测是否有头像
+  void checkAvatarChange() {
+    NavigatorHelper.showLoadingDialog(true);
+    if (avatarLocalPath != null) {
+      String filename = file.basename(avatarLocalPath);
+      RequestHelper.periodEffectiveSign(1).then((cos) {
+        TencentCos.uploadByFile(
+            "ap-beijing",
+            "1253631018",
+            "barber-1253631018",
+            cos.tmpSecretId,
+            cos.tmpSecretKey,
+            cos.sessionToken,
+            cos.expiredTime,
+            "${cos.cosPath}/$filename",
+            avatarLocalPath);
+        TencentCos.setMethodCallHandler(_handleMessages);
+      }).catchError((err) {
+        NavigatorHelper.showLoadingDialog(false);
+      });
+    } else {
+      commitChange();
+    }
+  }
+
+  void commitChange([String avatarUrl]) {
     RequestHelper.reviseProfile(pageCacheUser.gender, pageCacheUser.nickname,
-            pageCacheUser.signature, pageCacheUser.avatar)
+            pageCacheUser.signature, avatarUrl ?? "")
         .then((data) {
+      NavigatorHelper.showLoadingDialog(false, () {
+        Navigator.pop(context);
+      });
       ToastUtils.toast('信息修改成功');
-      Navigator.pop(context);
     });
   }
 
@@ -97,7 +115,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           icon: const Icon(Icons.send),
           tooltip: '提交修改',
           onPressed: () {
-            commitChange();
+            checkAvatarChange();
           },
         )
       ]),
