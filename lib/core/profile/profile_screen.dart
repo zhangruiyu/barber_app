@@ -13,6 +13,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:flutter_native_image/flutter_native_image.dart';
 import 'package:tencent_cos/tencent_cos.dart';
 
 class ProfileScreen extends BasePageRoute {
@@ -32,7 +33,7 @@ class ProfileScreen extends BasePageRoute {
 class _ProfileScreenState extends State<ProfileScreen> {
   TextEditingController addressEditingController;
   UserInfo pageCacheUser;
-  String avatarLocalPath;
+  File avatarLocalPath;
 
   @override
   void initState() {
@@ -49,7 +50,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   void uploadAvatar() async {
     File image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    avatarLocalPath = image?.path;
+    if (image != null) {
+      //需要压缩
+      if (image.lengthSync() > 200 * 1000) {
+        //控制在200kb
+        avatarLocalPath =
+        (await FlutterNativeImage.compressImage(image.path, quality: image.lengthSync()~/(200*1000)));
+      }else{
+        image = avatarLocalPath;
+      }
+
+    }
   }
 
   Future<Null> _handleMessages(MethodCall call) async {
@@ -74,7 +85,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void checkAvatarChange() {
     NavigatorHelper.showLoadingDialog(true);
     if (avatarLocalPath != null) {
-      String filename = file.basename(avatarLocalPath);
+      String filename = file.basename(avatarLocalPath.path);
       RequestHelper.periodEffectiveSign(1).then((cos) {
         TencentCos.uploadByFile(
             "ap-beijing",
@@ -85,7 +96,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             cos.sessionToken,
             cos.expiredTime,
             "${cos.cosPath}/$filename",
-            avatarLocalPath);
+            avatarLocalPath.path);
         TencentCos.setMethodCallHandler(_handleMessages);
       }).catchError((err) {
         NavigatorHelper.showLoadingDialog(false);
@@ -99,6 +110,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     RequestHelper.reviseProfile(pageCacheUser.gender, pageCacheUser.nickname,
             pageCacheUser.signature, avatarUrl ?? "")
         .then((data) {
+      avatarLocalPath?.deleteSync();
       NavigatorHelper.showLoadingDialog(false, () {
         Navigator.pop(context);
       });
