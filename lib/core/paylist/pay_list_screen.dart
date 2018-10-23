@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:barber_app/base/BasePageRoute.dart';
 import 'package:barber_app/core/paylist/entitys/pay_list_entity.dart';
 import 'package:barber_app/helpers/request_helper.dart';
-import 'package:barber_app/widget/StatePageState.dart';
-import 'package:barber_app/widget/Toolbar.dart';
-import 'package:barber_app/widget/divider.dart';
+import 'package:barber_common/widget/StatePageState.dart';
+import 'package:barber_common/widget/Toolbar.dart';
+import 'package:barber_common/widget/divider.dart';
 import 'package:flutter/material.dart';
 import 'package:refresh_wow/refresh_wow.dart';
 

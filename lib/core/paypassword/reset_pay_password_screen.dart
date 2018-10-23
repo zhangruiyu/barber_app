@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:barber_app/base/BasePageRoute.dart';
 import 'package:barber_app/core/store/detail/entitys/store_detail_entity.dart';
 import 'package:barber_app/helpers/request_helper.dart';
-import 'package:barber_app/utils/toast_utils.dart';
-import 'package:barber_app/widget/Toolbar.dart';
-import 'package:barber_app/widget/count_down_text.dart';
+import 'package:barber_common/utils/toast_utils.dart';
+import 'package:barber_common/widget/Toolbar.dart';
+import 'package:barber_common/widget/count_down_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

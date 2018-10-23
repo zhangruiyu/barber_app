@@ -13,11 +13,11 @@ import 'package:barber_app/core/store/detail/store_detail_srceen.dart';
 import 'package:barber_app/core/store/queue/store_quque_srceen.dart';
 import 'package:barber_app/core/store/subjects/subjects_screen.dart';
 import 'package:barber_app/helpers/request_helper.dart';
-import 'package:barber_app/utils/WindowUtils.dart';
-import 'package:barber_app/utils/toast_utils.dart';
-import 'package:barber_app/widget/BannerShowWidget.dart';
-import 'package:barber_app/widget/Toolbar.dart';
-import 'package:barber_app/widget/divider.dart';
+import 'package:barber_common/utils/WindowUtils.dart';
+import 'package:barber_common/utils/toast_utils.dart';
+import 'package:barber_common/widget/BannerShowWidget.dart';
+import 'package:barber_common/widget/Toolbar.dart';
+import 'package:barber_common/widget/divider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 

@@ -2,7 +2,7 @@ import 'package:barber_app/core/auto/auto_page_model.dart';
 import 'package:barber_app/core/auto/login_page.dart';
 import 'package:barber_app/core/auto/register_page.dart';
 import 'package:barber_app/styles/color_style.dart';
-import 'package:barber_app/utils/WindowUtils.dart';
+import 'package:barber_common/utils/WindowUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 

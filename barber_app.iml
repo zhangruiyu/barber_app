@@ -54,6 +54,12 @@
       <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/url_launcher/example/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/url_launcher/example/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/url_launcher/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/plugin/barber_common/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/plugin/barber_common/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/plugin/barber_common/build" />
+      <excludeFolder url="file://$MODULE_DIR$/plugin/barber_common/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/plugin/barber_common/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/plugin/barber_common/example/build" />
       <excludeFolder url="file://$MODULE_DIR$/plugin/tencent_cos/example/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/plugin/tencent_cos/example/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/plugin/tencent_cos/example/build" />

@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:barber_app/config/constant.dart';
 import 'package:barber_app/exception/NetException.dart';
-import 'package:barber_app/utils/toast_utils.dart';
+import 'package:barber_common/utils/toast_utils.dart';
 import 'package:dio/dio.dart';
 
 typedef T TransformToEntity<T>(dynamic json);

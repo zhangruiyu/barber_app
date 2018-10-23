@@ -1,4 +1,6 @@
 PODS:
+  - barber_common (0.0.1):
+    - Flutter
   - Flutter (1.0.0)
   - flutter_native_image (0.0.1):
     - Flutter
@@ -25,6 +27,7 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
+  - barber_common (from `.symlinks/plugins/barber_common/ios`)
   - Flutter (from `.symlinks/flutter/ios`)
   - flutter_native_image (from `.symlinks/plugins/flutter_native_image/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
@@ -41,6 +44,8 @@ SPEC REPOS:
     - QCloudCOSXML
 
 EXTERNAL SOURCES:
+  barber_common:
+    :path: ".symlinks/plugins/barber_common/ios"
   Flutter:
     :path: ".symlinks/flutter/ios"
   flutter_native_image:
@@ -61,6 +66,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/url_launcher/ios"
 
 SPEC CHECKSUMS:
+  barber_common: ad7a877f906b7682ad33e0d26b995832f291aa88
   Flutter: 9d0fac939486c9aba2809b7982dfdbb47a7b0296
   flutter_native_image: 3d9f735f47bf8af7dea28056bf90c03ad4ce531b
   fluttertoast: ad0527b15297baf11349f3f581dae4d40f24f340

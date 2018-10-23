@@ -8,7 +8,7 @@ import 'package:barber_app/models/user.dart';
 import 'package:barber_app/reducers/auth_redux.dart';
 import 'package:barber_app/reducers/loading_redux.dart';
 import 'package:barber_app/styles/color_style.dart';
-import 'package:barber_app/utils/toast_utils.dart';
+import 'package:barber_common/utils/toast_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_redux/flutter_redux.dart';

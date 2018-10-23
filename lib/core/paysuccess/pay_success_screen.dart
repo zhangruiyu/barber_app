@@ -1,8 +1,8 @@
 import 'package:barber_app/base/BasePageRoute.dart';
 import 'package:barber_app/core/paylist/pay_list_screen.dart';
 import 'package:barber_app/core/paysuccess/entitys/pay_success_entity.dart';
-import 'package:barber_app/utils/WindowUtils.dart';
-import 'package:barber_app/widget/Toolbar.dart';
+import 'package:barber_common/utils/WindowUtils.dart';
+import 'package:barber_common/widget/Toolbar.dart';
 import 'package:flutter/material.dart';
 
 class PaySuccessScreen extends BasePageRoute {

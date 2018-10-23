@@ -19,33 +19,17 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
-  scoped_model: any
-  shared_preferences: any
-  flutter_redux: ^0.5.2
-  redux: ^3.0.0
-  redux_logging: ^0.3.0
-  redux_thunk: ^0.2.0
-  dio: ^1.0.0
-  fluttertoast: ^2.0.7
-  navigation_bar: ^0.0.1
 #  local_notifications: any
-  cached_network_image:
-      git: https://github.com/Cretezy/flutter_cached_network_image.git
   share: any
-  url_launcher: any
-  refresh_wow: ^0.0.7
-  banner: ^0.1.3
 #  amap_location: "^0.1.1"
   intl: any
 #  permission_handler: '^2.0.0'
 #  qr_reader: ^0.1.3
 #  qr_flutter: ^1.1.3
-  flutter_spinkit: "^2.1.0"
 #  flutter_alipay: "^0.1.0"
-  flutter_native_image:
-    git: https://github.com/btastic/flutter_native_image.git
-  tencent_cos: "^0.0.1"
-  image_picker: any
+  barber_common:
+        path: ./plugin/barber_common
+
 
 dev_dependencies:
   flutter_test:

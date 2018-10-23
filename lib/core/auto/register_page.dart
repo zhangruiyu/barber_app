@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:barber_app/core/auto/auto_page_model.dart';
 import 'package:barber_app/helpers/request_helper.dart';
 import 'package:barber_app/styles/color_style.dart';
-import 'package:barber_app/utils/toast_utils.dart';
-import 'package:barber_app/widget/count_down_text.dart';
+import 'package:barber_common/utils/toast_utils.dart';
+import 'package:barber_common/widget/count_down_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

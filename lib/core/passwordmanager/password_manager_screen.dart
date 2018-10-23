@@ -7,9 +7,9 @@ import 'package:barber_app/core/paypassword/set_pay_password_screen.dart';
 import 'package:barber_app/core/restpassword/rest_password_screen.dart';
 import 'package:barber_app/core/resttel/rest_tel_screen.dart';
 import 'package:barber_app/helpers/request_helper.dart';
-import 'package:barber_app/utils/toast_utils.dart';
-import 'package:barber_app/widget/StatePageState.dart';
-import 'package:barber_app/widget/Toolbar.dart';
+import 'package:barber_common/utils/toast_utils.dart';
+import 'package:barber_common/widget/StatePageState.dart';
+import 'package:barber_common/widget/Toolbar.dart';
 import 'package:flutter/material.dart';
 
 class PasswordManagerScreen extends BasePageRoute {

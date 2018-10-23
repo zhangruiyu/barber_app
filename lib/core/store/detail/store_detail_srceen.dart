@@ -8,11 +8,11 @@ import 'package:barber_app/core/store/cardbag/store_card_bag_item.dart';
 import 'package:barber_app/core/store/queue/store_quque_srceen.dart';
 import 'package:barber_app/core/store/subjects/subjects_screen.dart';
 import 'package:barber_app/helpers/request_helper.dart';
-import 'package:barber_app/utils/WindowUtils.dart';
-import 'package:barber_app/widget/BannerShowWidget.dart';
-import 'package:barber_app/widget/StatePageState.dart';
-import 'package:barber_app/widget/Toolbar.dart';
-import 'package:barber_app/widget/divider.dart';
+import 'package:barber_common/utils/WindowUtils.dart';
+import 'package:barber_common/widget/BannerShowWidget.dart';
+import 'package:barber_common/widget/StatePageState.dart';
+import 'package:barber_common/widget/Toolbar.dart';
+import 'package:barber_common/widget/divider.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 
