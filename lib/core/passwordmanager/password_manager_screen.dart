@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:barber_app/base/BasePageRoute.dart';
+import 'package:barber_common/base/BasePageRoute.dart';
 import 'package:barber_app/core/passwordmanager/entitys/password_manager_entity.dart';
 import 'package:barber_app/core/paypassword/reset_pay_password_screen.dart';
 import 'package:barber_app/core/paypassword/set_pay_password_screen.dart';

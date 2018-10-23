@@ -1,4 +1,4 @@
-import 'package:barber_app/base/BasePageRoute.dart';
+import 'package:barber_common/base/BasePageRoute.dart';
 import 'package:barber_app/core/paypassword/reset_pay_password_screen.dart';
 import 'package:flutter/material.dart';
 

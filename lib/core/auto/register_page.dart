@@ -2,7 +2,8 @@ import 'dart:async';
 
 import 'package:barber_app/core/auto/auto_page_model.dart';
 import 'package:barber_app/helpers/request_helper.dart';
-import 'package:barber_app/styles/color_style.dart';
+import 'package:barber_common/helpers/request_helper.dart';
+import 'package:barber_common/styles/color_style.dart';
 import 'package:barber_common/utils/toast_utils.dart';
 import 'package:barber_common/widget/count_down_text.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,7 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   void sendRegisterCode() {
-    RequestHelper.sendRegisterCode(
+    RequestHelperCommon.sendRegisterCode(
             telEditingController.text, passwordEditingController.text)
         .then((onValue) {
       var n = onValue.expire;
@@ -51,7 +52,7 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   void registerUser() {
-    RequestHelper.registerUser(telEditingController.text,
+    RequestHelperCommon.registerUser(telEditingController.text,
             passwordEditingController.text, autoCodeEditingController.text)
         .then((onValue) {
       ToastUtils.toast("注册成功,请登录");

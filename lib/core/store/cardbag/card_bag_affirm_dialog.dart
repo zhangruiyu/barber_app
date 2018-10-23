@@ -4,7 +4,7 @@ import 'package:barber_app/core/paysuccess/pay_success_screen.dart';
 import 'package:barber_app/core/store/cardbag/entitys/pay_card_bag_success_entity.dart';
 import 'package:barber_app/core/store/cardbag/pay_card_bag_success_screen.dart';
 import 'package:barber_app/core/store/detail/entitys/pay_bag_preview_entity.dart';
-import 'package:barber_app/helpers/navigator_helper.dart';
+import 'package:barber_common/helpers/navigator_helper.dart';
 import 'package:barber_app/helpers/request_helper.dart';
 import 'package:barber_common/utils/WindowUtils.dart';
 import 'package:flutter/material.dart';

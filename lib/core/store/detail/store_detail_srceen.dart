@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:banner/banner.dart';
-import 'package:barber_app/base/BasePageRoute.dart';
+import 'package:barber_common/base/BasePageRoute.dart';
 import 'package:barber_app/core/pay/store_project.dart';
 import 'package:barber_app/core/store/detail/entitys/store_detail_entity.dart';
 import 'package:barber_app/core/store/cardbag/store_card_bag_item.dart';

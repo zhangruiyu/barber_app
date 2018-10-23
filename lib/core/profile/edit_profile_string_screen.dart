@@ -1,4 +1,4 @@
-import 'package:barber_app/base/BasePageRoute.dart';
+import 'package:barber_common/base/BasePageRoute.dart';
 import 'package:barber_app/core/main/account/entitys/account_entity.dart';
 import 'package:barber_common/widget/Toolbar.dart';
 import 'package:cached_network_image/cached_network_image.dart';

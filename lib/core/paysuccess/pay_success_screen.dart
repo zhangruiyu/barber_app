@@ -1,4 +1,4 @@
-import 'package:barber_app/base/BasePageRoute.dart';
+import 'package:barber_common/base/BasePageRoute.dart';
 import 'package:barber_app/core/paylist/pay_list_screen.dart';
 import 'package:barber_app/core/paysuccess/entitys/pay_success_entity.dart';
 import 'package:barber_common/utils/WindowUtils.dart';

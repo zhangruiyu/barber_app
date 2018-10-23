@@ -1,6 +1,4 @@
 import 'dart:async';
-
-import 'package:barber_app/core/auto/entitys/login_entity.dart';
 import 'package:barber_app/core/auto/entitys/register_entity.dart';
 import 'package:barber_app/core/main/account/entitys/account_entity.dart';
 import 'package:barber_app/core/main/home/entitys/home_entity.dart';
@@ -15,23 +13,10 @@ import 'package:barber_app/core/store/detail/entitys/store_detail_entity.dart';
 import 'package:barber_app/core/store/queue/entitys/add_store_queue_entity.dart';
 import 'package:barber_app/core/store/subjects/entitys/affirm_dialog_show_entity.dart';
 import 'package:barber_app/core/wallet/entitys/wallet_entity.dart';
-import 'package:barber_app/helpers/net_work.dart';
-import 'package:barber_app/models/cos.dart';
+import 'package:barber_common/helpers/net_work.dart';
 
 class RequestHelper {
-  static Future<LoginEntity> login(String tel, String password) {
-    return RequestClient.request<LoginEntity>(
-        (json) => LoginEntity.fromJson(json),
-        '/auth/login',
-        {'identifier': tel, 'credential': password, 'identity_type': "tel"});
-  }
 
-  static Future<RegisterEntity> sendRegisterCode(String tel, String password) {
-    return RequestClient.request<RegisterEntity>(
-        (json) => RegisterEntity.fromJson(json),
-        '/auth/register1',
-        {'tel': tel, 'password': password});
-  }
 
   static Future<RegisterEntity> sendRestPasswordCode(String tel) {
     return RequestClient.request<RegisterEntity>(
@@ -48,13 +33,7 @@ class RequestHelper {
         {'tel': tel, 'code': code, 'newPassword': newPassword});
   }
 
-  static Future<Map<String, dynamic>> registerUser(
-      String tel, String password, String code) {
-    return RequestClient.request<Map<String, dynamic>>(
-        (json) => json,
-        '/auth/register2',
-        {'tel': tel, 'password': password, 'authCode': code});
-  }
+
 
   static Future<StoreProject> getStoreAllProject(int id) {
     return RequestClient.request<StoreProject>(
@@ -191,8 +170,5 @@ class RequestHelper {
         {'card_id': cardBagId, 'paypassword': paypassword});
   }
 
-  static Future<CosEntity> periodEffectiveSign(int type) {
-    return RequestClient.request<CosEntity>((json) => CosEntity.fromJson(json),
-        '/cos/common/periodEffectiveSign', {'type': type});
-  }
+
 }

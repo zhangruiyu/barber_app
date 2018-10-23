@@ -1,9 +1,10 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:barber_app/helpers/navigator_helper.dart';
+import 'package:barber_common/helpers/navigator_helper.dart';
+import 'package:barber_common/helpers/request_helper.dart';
 import 'package:path/path.dart' as file;
 
-import 'package:barber_app/base/BasePageRoute.dart';
+import 'package:barber_common/base/BasePageRoute.dart';
 import 'package:barber_app/core/main/account/entitys/account_entity.dart';
 import 'package:barber_app/core/profile/edit_profile_string_screen.dart';
 import 'package:barber_app/helpers/request_helper.dart';
@@ -86,7 +87,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     NavigatorHelper.showLoadingDialog(true);
     if (avatarLocalPath != null) {
       String extension = file.extension(avatarLocalPath.path);
-      RequestHelper.periodEffectiveSign(2).then((cos) {
+      RequestHelperCommon.periodEffectiveSign(2).then((cos) {
         TencentCos.uploadByFile(
             "ap-beijing",
             "1253631018",

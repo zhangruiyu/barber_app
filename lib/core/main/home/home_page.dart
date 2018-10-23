@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:banner/banner.dart';
-import 'package:barber_app/config/constant.dart';
+import 'package:barber_common/config/constant.dart';
 import 'package:barber_app/core/main/home/entitys/home_entity.dart';
 import 'package:barber_app/core/main/home/i_refresh.dart';
 import 'package:barber_app/core/main/home_tab_screen.dart';

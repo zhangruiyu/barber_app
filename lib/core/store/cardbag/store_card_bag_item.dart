@@ -1,8 +1,8 @@
 import 'package:barber_app/core/paypassword/set_pay_password_screen.dart';
 import 'package:barber_app/core/store/cardbag/card_bag_affirm_dialog.dart';
 import 'package:barber_app/core/store/detail/entitys/store_detail_entity.dart';
-import 'package:barber_app/helpers/net_work.dart';
 import 'package:barber_app/helpers/request_helper.dart';
+import 'package:barber_common/helpers/net_work.dart';
 import 'package:barber_common/utils/WindowUtils.dart';
 import 'package:flutter/material.dart';
 

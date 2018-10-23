@@ -1,4 +1,4 @@
-import 'package:barber_app/base/BasePageRoute.dart';
+import 'package:barber_common/base/BasePageRoute.dart';
 import 'package:barber_app/core/store/detail/entitys/store_detail_entity.dart';
 import 'package:barber_app/helpers/request_helper.dart';
 import 'package:barber_common/utils/toast_utils.dart';

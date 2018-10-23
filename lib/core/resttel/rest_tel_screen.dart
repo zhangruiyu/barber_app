@@ -1,11 +1,11 @@
 import 'dart:async';
 
-import 'package:barber_app/base/BasePageRoute.dart';
-import 'package:barber_app/config/constant.dart';
-import 'package:barber_app/helpers/navigator_helper.dart';
+import 'package:barber_common/base/BasePageRoute.dart';
+import 'package:barber_common/config/constant.dart';
+import 'package:barber_common/helpers/navigator_helper.dart';
 import 'package:barber_app/helpers/request_helper.dart';
-import 'package:barber_app/helpers/user_helper.dart';
-import 'package:barber_app/reducers/auth_redux.dart';
+import 'package:barber_common/helpers/user_helper.dart';
+import 'package:barber_common/reducers/auth_redux.dart';
 import 'package:barber_common/utils/WindowUtils.dart';
 import 'package:barber_common/utils/toast_utils.dart';
 import 'package:barber_common/widget/count_down_text.dart';

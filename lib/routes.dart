@@ -1,14 +1,13 @@
 library routes;
 
-import 'package:barber_app/base/DialogRoute.dart';
 import 'package:barber_app/core/auto/login_screen.dart';
-import 'package:barber_app/core/loading/loading_screen.dart';
 import 'package:barber_app/core/main/home_tab_screen.dart';
-import 'package:barber_app/helpers/navigator_helper.dart';
+import 'package:barber_common/helpers/navigator_helper.dart';
+import 'package:barber_common/models/app_state.dart';
+import 'package:barber_common/module/loading/loading_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
-import 'models/app_state.dart';
 
 Map<String, WidgetBuilder> getRoutes(context, store) {
   return {

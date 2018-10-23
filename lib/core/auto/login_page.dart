@@ -1,14 +1,15 @@
 import 'dart:async';
 
 import 'package:barber_app/core/auto/auto_page_model.dart';
-import 'package:barber_app/helpers/navigator_helper.dart';
+import 'package:barber_common/helpers/navigator_helper.dart';
 import 'package:barber_app/helpers/request_helper.dart';
-import 'package:barber_app/models/app_state.dart';
-import 'package:barber_app/models/user.dart';
-import 'package:barber_app/reducers/auth_redux.dart';
-import 'package:barber_app/reducers/loading_redux.dart';
-import 'package:barber_app/styles/color_style.dart';
+import 'package:barber_common/models/app_state.dart';
+import 'package:barber_common/models/user.dart';
+import 'package:barber_common/reducers/auth_redux.dart';
+import 'package:barber_common/reducers/loading_redux.dart';
+import 'package:barber_common/styles/color_style.dart';
 import 'package:barber_common/utils/toast_utils.dart';
+import 'package:barber_common/helpers/request_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -39,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
   ThunkAction<AppState> actionLogin(String tel, String password) {
     ThunkAction<AppState> action = (Store<AppState> store) async {
       NavigatorHelper.showLoadingDialog(true);
-      RequestHelper.login(tel, password).then((onValue) {
+      RequestHelperCommon.login(tel, password).then((onValue) {
         NavigatorHelper.showLoadingDialog(false);
         store.dispatch(LogInSuccessful(
             user: User(

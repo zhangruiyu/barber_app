@@ -1,6 +1,6 @@
-import 'package:barber_app/base/BasePageRoute.dart';
-import 'package:barber_app/models/app_state.dart';
-import 'package:barber_app/reducers/auth_redux.dart';
+import 'package:barber_common/base/BasePageRoute.dart';
+import 'package:barber_common/models/app_state.dart';
+import 'package:barber_common/reducers/auth_redux.dart';
 import 'package:barber_common/utils/WindowUtils.dart';
 import 'package:barber_common/utils/toast_utils.dart';
 import 'package:barber_common/widget/Toolbar.dart';

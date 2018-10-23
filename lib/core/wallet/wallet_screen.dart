@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:barber_app/base/BasePageRoute.dart';
+import 'package:barber_common/base/BasePageRoute.dart';
 import 'package:barber_app/core/wallet/entitys/wallet_entity.dart';
 import 'package:barber_app/helpers/request_helper.dart';
 import 'package:barber_common/widget/StatePageState.dart';

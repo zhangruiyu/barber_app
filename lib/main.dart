@@ -1,6 +1,6 @@
-import 'package:barber_app/config/constant.dart';
-import 'package:barber_app/helpers/user_helper.dart';
-import 'package:barber_app/models/app_state.dart';
+import 'package:barber_common/config/constant.dart';
+import 'package:barber_common/helpers/user_helper.dart';
+import 'package:barber_common/models/app_state.dart';
 import 'package:barber_app/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';

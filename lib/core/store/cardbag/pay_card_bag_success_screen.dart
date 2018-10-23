@@ -1,7 +1,7 @@
-import 'package:barber_app/base/BasePageRoute.dart';
+import 'package:barber_common/base/BasePageRoute.dart';
 import 'package:barber_app/core/paylist/pay_list_screen.dart';
 import 'package:barber_app/core/store/cardbag/entitys/pay_card_bag_success_entity.dart';
-import 'package:barber_app/helpers/navigator_helper.dart';
+import 'package:barber_common/helpers/navigator_helper.dart';
 import 'package:barber_common/utils/WindowUtils.dart';
 import 'package:barber_common/widget/Toolbar.dart';
 import 'package:flutter/material.dart';
