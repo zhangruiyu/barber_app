@@ -85,8 +85,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void checkAvatarChange() {
     NavigatorHelper.showLoadingDialog(true);
     if (avatarLocalPath != null) {
-      String filename = file.basename(avatarLocalPath.path);
-      RequestHelper.periodEffectiveSign(1).then((cos) {
+      String extension = file.extension(avatarLocalPath.path);
+      RequestHelper.periodEffectiveSign(2).then((cos) {
         TencentCos.uploadByFile(
             "ap-beijing",
             "1253631018",
@@ -95,7 +95,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             cos.tmpSecretKey,
             cos.sessionToken,
             cos.expiredTime,
-            "${cos.cosPath}/$filename",
+            "${cos.cosPath}avatar$extension",
             avatarLocalPath.path);
         TencentCos.setMethodCallHandler(_handleMessages);
       }).catchError((err) {
