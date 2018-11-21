@@ -4,6 +4,7 @@ import 'package:barber_common/models/app_state.dart';
 import 'package:barber_app/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:oktoast/oktoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
@@ -25,14 +26,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreProvider<AppState>(
       store: store,
-      child: new MaterialApp(
+      child: OKToast(
+          child: new MaterialApp(
         theme: _kGalleryLightTheme,
         title: "待定",
 //        locale: const Locale('zh', 'CN'),
         debugShowCheckedModeBanner: false,
         routes: getRoutes(context, store),
         initialRoute: "/",
-      ),
+      )),
     );
   }
 }
