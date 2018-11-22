@@ -4,8 +4,6 @@ PODS:
   - Flutter (1.0.0)
   - flutter_native_image (0.0.1):
     - Flutter
-  - fluttertoast (0.0.2):
-    - Flutter
   - image_picker (0.0.1):
     - Flutter
   - path_provider (0.0.1):
@@ -30,7 +28,6 @@ DEPENDENCIES:
   - barber_common (from `.symlinks/plugins/barber_common/ios`)
   - Flutter (from `.symlinks/flutter/ios`)
   - flutter_native_image (from `.symlinks/plugins/flutter_native_image/ios`)
-  - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - share (from `.symlinks/plugins/share/ios`)
@@ -50,8 +47,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/flutter/ios"
   flutter_native_image:
     :path: ".symlinks/plugins/flutter_native_image/ios"
-  fluttertoast:
-    :path: ".symlinks/plugins/fluttertoast/ios"
   image_picker:
     :path: ".symlinks/plugins/image_picker/ios"
   path_provider:
@@ -69,14 +64,13 @@ SPEC CHECKSUMS:
   barber_common: ad7a877f906b7682ad33e0d26b995832f291aa88
   Flutter: 9d0fac939486c9aba2809b7982dfdbb47a7b0296
   flutter_native_image: 3d9f735f47bf8af7dea28056bf90c03ad4ce531b
-  fluttertoast: ad0527b15297baf11349f3f581dae4d40f24f340
   image_picker: ee00aab0487cedc80a304085219503cc6d0f2e22
   path_provider: 09407919825bfe3c2deae39453b7a5b44f467873
   QCloudCore: b91a762d280f0a80cc6f537fd186ac43a4a3025e
   QCloudCOSXML: a30ab17f45b0cbbcbb218a3677298498e8748a22
   share: 222b5dcc8031238af9d7de91149df65bad1aef75
   shared_preferences: 5a1d487c427ee18fcd3ea1f2a131569481834b53
-  tencent_cos: 35e81f9bbe3282e834e8bff1b1499eaae6828210
+  tencent_cos: 93850300f1cba6abd94456a65d85401c6f154e77
   url_launcher: 92b89c1029a0373879933c21642958c874539095
 
 PODFILE CHECKSUM: 1e5af4103afd21ca5ead147d7b81d06f494f51a2

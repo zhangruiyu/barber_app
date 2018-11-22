@@ -1,13 +1,13 @@
 import 'dart:async';
 
 import 'package:banner/banner.dart';
-import 'package:barber_common/base/BasePageRoute.dart';
 import 'package:barber_app/core/pay/store_project.dart';
-import 'package:barber_app/core/store/detail/entitys/store_detail_entity.dart';
 import 'package:barber_app/core/store/cardbag/store_card_bag_item.dart';
+import 'package:barber_app/core/store/detail/entitys/store_detail_entity.dart';
 import 'package:barber_app/core/store/queue/store_quque_srceen.dart';
 import 'package:barber_app/core/store/subjects/subjects_screen.dart';
 import 'package:barber_app/helpers/request_helper.dart';
+import 'package:barber_common/base/BasePageRoute.dart';
 import 'package:barber_common/utils/WindowUtils.dart';
 import 'package:barber_common/widget/BannerShowWidget.dart';
 import 'package:barber_common/widget/StatePageState.dart';
@@ -125,135 +125,141 @@ class _StoreDetailSrceenState extends State<StoreDetailScreen> {
             return SingleChildScrollView(
               child: Container(
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    new BannerView(
-                      data: [storeDetailEntity.storeInfo.avatar],
-                      height: bannerHeight,
-                      buildShowView: (int index, data) {
-                        return new BannerShowWidget(picUrl: data);
-                      },
-                      onBannerClickListener: (int index, data) {},
-                    ),
-                    ListTile(
-                      title: Text(storeDetailEntity.storeInfo.name),
-                      subtitle: Text(
-                          "创建时间   ${storeDetailEntity.storeInfo.createTime}"),
-                    ),
-                    FlatButton.icon(
-                      icon: Icon(
-                        Icons.location_on,
-                        size: 20.0,
-                        color: Colors.black54,
-                      ),
-                      onPressed: () {},
-                      label: Text(
-                        storeDetailEntity.storeInfo.address,
-                        style: theme.textTheme.body2,
-                      ),
-                    ),
-                    ListTile(
-                      title:
-                          Text("预约人数一共${storeDetailEntity.allQueueUpCount}人"),
-                      subtitle: Text(storeDetailEntity.queueCurrentIndex == -1
-                          ? "请点击右侧按钮预约"
-                          : "您当前正在第${storeDetailEntity.queueCurrentIndex}位"),
-                      trailing: FlatButton(
-                        color: theme.accentColor,
-                        textColor: Colors.white,
-                        child: Text("去预约"),
-                        onPressed: () {
-                          selectProjectToQueue(storeDetailEntity);
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      new BannerView(
+                        data: [storeDetailEntity.storeInfo.avatar],
+                        height: bannerHeight,
+                        buildShowView: (int index, data) {
+                          return new BannerShowWidget(picUrl: data);
                         },
+                        onBannerClickListener: (int index, data) {},
                       ),
-                    ),
-                    CSDivider(
-                      colorHeight: 20.0,
-                      height: 20.0,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15.0, vertical: 20.0),
-                      child: Row(
-                        children: <Widget>[
-                          Text(
-                            "次卡",
-                            style: theme.textTheme.subhead,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 18.0),
-                            child: Text(
-                              "可用于抵扣消费",
-                              style: theme.textTheme.body1,
+                      ListTile(
+                        title: Text(storeDetailEntity.storeInfo.name),
+                        subtitle: Text(
+                            "创建时间   ${storeDetailEntity.storeInfo.createTime}"),
+                      ),
+                      FlatButton.icon(
+                        icon: Icon(
+                          Icons.location_on,
+                          size: 20.0,
+                          color: Colors.black54,
+                        ),
+                        onPressed: () {},
+                        label: Text(
+                          storeDetailEntity.storeInfo.address,
+                          style: theme.textTheme.body2,
+                        ),
+                      ),
+                      ListTile(
+                        title:
+                            Text("预约人数一共${storeDetailEntity.allQueueUpCount}人"),
+                        subtitle: Text(storeDetailEntity.queueCurrentIndex == -1
+                            ? "请点击右侧按钮预约"
+                            : "您当前正在第${storeDetailEntity.queueCurrentIndex}位"),
+                        trailing: FlatButton(
+                          color: theme.accentColor,
+                          textColor: Colors.white,
+                          child: Text("去预约"),
+                          onPressed: () {
+                            selectProjectToQueue(storeDetailEntity);
+                          },
+                        ),
+                      ),
+                      storeDetailEntity.storeCardBag.isEmpty
+                          ? null
+                          : CSDivider(
+                              colorHeight: 20.0,
+                              height: 20.0,
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.only(bottom: 10.0),
-                      height: 250.0,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (BuildContext context, int index) {
-                          var storeCardBag =
-                              storeDetailEntity.storeCardBag[index];
-                          return StoreCardBagItem(storeCardBag);
-                        },
-                        itemCount: storeDetailEntity.storeCardBag.length,
-                      ),
-                    ),
-                    CSDivider(
-                      colorHeight: 20.0,
-                      height: 20.0,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15.0, vertical: 20.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text(
-                            "项目列表",
-                            style: theme.textTheme.body2,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              selectSubjectPay(null);
-                            },
-                            child: Text(
-                              "查看所有项目",
-                              style: theme.textTheme.body2
-                                  .merge(TextStyle(color: theme.accentColor)),
+                      storeDetailEntity.storeCardBag.isEmpty
+                          ? null
+                          : Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 15.0, vertical: 20.0),
+                              child: Row(
+                                children: <Widget>[
+                                  Text(
+                                    "次卡",
+                                    style: theme.textTheme.subhead,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 18.0),
+                                    child: Text(
+                                      "可用于抵扣消费",
+                                      style: theme.textTheme.body1,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                      storeDetailEntity.storeCardBag.isEmpty
+                          ? null
+                          : Container(
+                              padding: const EdgeInsets.only(bottom: 10.0),
+                              height: 250.0,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (BuildContext context, int index) {
+                                  var storeCardBag =
+                                      storeDetailEntity.storeCardBag[index];
+                                  return StoreCardBagItem(storeCardBag);
+                                },
+                                itemCount:
+                                    storeDetailEntity.storeCardBag.length,
+                              ),
+                            ),
+                      CSDivider(
+                        colorHeight: 20.0,
+                        height: 20.0,
                       ),
-                    ),
-                    Column(
-                      children:
-                          storeDetailEntity.storeAllProjects.map((itemProject) {
-                        return ListTile(
-                          title: Text(itemProject.name),
-                          subtitle: Text(itemProject.money.toString()),
-                          trailing: FlatButton(
-                            color: theme.accentColor,
-                            textColor: Colors.white,
-                            child: Text("去支付"),
-                            onPressed: () {
-                              selectSubjectPay(Subtypes(
-                                  name: itemProject.name,
-                                  money: itemProject.money,
-                                  createTime: itemProject.createTime,
-                                  pic: itemProject.pic,
-                                  id: itemProject.id));
-                            },
-                          ),
-                        );
-                      }).toList(),
-                    )
-                  ],
-                ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 15.0, vertical: 20.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text(
+                              "项目列表",
+                              style: theme.textTheme.body2,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                selectSubjectPay(null);
+                              },
+                              child: Text(
+                                "查看所有项目",
+                                style: theme.textTheme.body2
+                                    .merge(TextStyle(color: theme.accentColor)),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Column(
+                        children: storeDetailEntity.storeAllProjects
+                            .map((itemProject) {
+                          return ListTile(
+                            title: Text(itemProject.name),
+                            subtitle: Text(itemProject.money.toString()),
+                            trailing: FlatButton(
+                              color: theme.accentColor,
+                              textColor: Colors.white,
+                              child: Text("去支付"),
+                              onPressed: () {
+                                selectSubjectPay(Subtypes(
+                                    name: itemProject.name,
+                                    money: itemProject.money,
+                                    createTime: itemProject.createTime,
+                                    pic: itemProject.pic,
+                                    id: itemProject.id));
+                              },
+                            ),
+                          );
+                        }).toList(),
+                      )
+                    ].where((o) => o != null).toList()),
               ),
             );
           },
