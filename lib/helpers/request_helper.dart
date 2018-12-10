@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:barber_app/core/auto/entitys/register_entity.dart';
 import 'package:barber_app/core/main/account/entitys/account_entity.dart';
 import 'package:barber_app/core/main/home/entitys/home_entity.dart';
@@ -13,47 +14,36 @@ import 'package:barber_app/core/store/detail/entitys/store_detail_entity.dart';
 import 'package:barber_app/core/store/queue/entitys/add_store_queue_entity.dart';
 import 'package:barber_app/core/store/subjects/entitys/affirm_dialog_show_entity.dart';
 import 'package:barber_app/core/wallet/entitys/wallet_entity.dart';
+import 'package:barber_app/helpers/net_work.dart';
 import 'package:barber_common/helpers/net_work.dart';
 
 class RequestHelper {
-
-
   static Future<RegisterEntity> sendRestPasswordCode(String tel) {
-    return RequestClient.request<RegisterEntity>(
-        (json) => RegisterEntity.fromJson(json),
-        '/auth/forgetPassword',
-        {'tel': tel});
+    return AppRequestClient.request<RegisterEntity>(
+        '/auth/forgetPassword', {'tel': tel});
   }
 
   static Future<Object> restPassword(
       String tel, String code, String newPassword) {
-    return RequestClient.request<Object>(
-        (json) => Object(),
-        '/auth/restPassword',
+    return AppRequestClient.request<Object>('/auth/restPassword',
         {'tel': tel, 'code': code, 'newPassword': newPassword});
   }
 
-
-
   static Future<StoreProject> getStoreAllProject(int id) {
-    return RequestClient.request<StoreProject>(
-        (json) => StoreProject.fromJson(json),
-        '/store/common/getStoreAllProject',
-        {'store_id': id});
+    return AppRequestClient.request<StoreProject>(
+        '/store/common/getStoreAllProject', {'store_id': id});
   }
 
   static Future<AffirmDialogShowEntity> generateIndent(
       String selectResult, String store_id) {
-    return RequestClient.request<AffirmDialogShowEntity>(
-        (json) => AffirmDialogShowEntity.fromJson(json),
+    return AppRequestClient.request<AffirmDialogShowEntity>(
         '/store/common/generateIndent',
         {'select_result': selectResult, 'store_id': store_id});
   }
 
   static Future<PaySuccessEntity> payByIndent(
       String selectResult, String store_id, String paypassword) {
-    return RequestClient.request<PaySuccessEntity>(
-        (json) => PaySuccessEntity.fromJson(json),
+    return AppRequestClient.request<PaySuccessEntity>(
         '/store/common/payByIndent', {
       'select_result': selectResult,
       'store_id': store_id,
@@ -84,17 +74,14 @@ class RequestHelper {
 
   static Future<AddStoreQueueEntity> addStoreQueue(
       int storeId, String serverName) {
-    return RequestClient.request<AddStoreQueueEntity>(
-        (json) => AddStoreQueueEntity.fromJson(json),
+    return AppRequestClient.request<AddStoreQueueEntity>(
         '/store/common/addStoreQueue',
         {'store_id': storeId, "serverName": serverName});
   }
 
   static Future<StoreDetailEntity> storeDetail(int storeId) {
-    return RequestClient.request<StoreDetailEntity>(
-        (json) => StoreDetailEntity.fromJson(json),
-        '/store/common/storeDetail',
-        {'store_id': storeId});
+    return AppRequestClient.request<StoreDetailEntity>(
+        '/store/common/storeDetail', {'store_id': storeId});
   }
 
   static Future<List<SearchEntity>> searchStoreByName(String query) {
@@ -107,19 +94,16 @@ class RequestHelper {
   }
 
   static Future<AccountEntity> refreshAccount() {
-    return RequestClient.request<AccountEntity>(
-        (json) => AccountEntity.fromJson(json), '/account/common/refresh');
+    return AppRequestClient.request<AccountEntity>('/account/common/refresh');
   }
 
   static Future<HomeEntity> refreshHome() {
-    return RequestClient.request<HomeEntity>(
-        (json) => HomeEntity.fromJson(json), '/home/canLogin/refresh');
+    return AppRequestClient.request<HomeEntity>('/home/canLogin/refresh');
   }
 
   static Future<Object> reviseProfile(
       int gender, String nickname, String signature, String avatar) {
-    return RequestClient.request<Object>(
-        (json) => Object(), '/auth/common/updateUserInfo', {
+    return AppRequestClient.request<Object>('/auth/common/updateUserInfo', {
       "avatar": avatar,
       "gender": gender,
       "nickname": nickname,
@@ -128,47 +112,39 @@ class RequestHelper {
   }
 
   static Future<PayBagPreviewEntity> payStoreCardBag(int id) {
-    return RequestClient.request<PayBagPreviewEntity>(
-        (json) => PayBagPreviewEntity.fromJson(json),
+    return AppRequestClient.request<PayBagPreviewEntity>(
         '/store/common/payStoreCardBagPreview', {
       "card_id": id,
     });
   }
 
   static Future<Object> setPayPassword(String paypassword) {
-    return RequestClient.request<Object>(
-        (json) => Object(), '/auth/common/setPayPassword', {
+    return AppRequestClient.request<Object>('/auth/common/setPayPassword', {
       "paypassword": paypassword,
     });
   }
 
   static Future<Object> resetPayPassword(String paypassword, String authCode) {
-    return RequestClient.request<Object>(
-        (json) => Object(), '/auth/common/resetPayPassword', {
+    return AppRequestClient.request<Object>('/auth/common/resetPayPassword', {
       "paypassword": paypassword,
       "authCode": authCode,
     });
   }
 
   static Future<PasswordManagerEntity> requestPasswordManager() {
-    return RequestClient.request<PasswordManagerEntity>(
-        (json) => PasswordManagerEntity.fromJson(json),
+    return AppRequestClient.request<PasswordManagerEntity>(
         '/auth/common/passwordManagerList', {});
   }
 
   static Future<RegisterEntity> sendResetPayPasswordCode() {
-    return RequestClient.request<RegisterEntity>(
-        (json) => RegisterEntity.fromJson(json),
+    return AppRequestClient.request<RegisterEntity>(
         '/auth/common/sendResetPayPasswordCode', {});
   }
 
   static Future<PayCardBagSuccessEntity> payCardBag(
       int cardBagId, String paypassword) {
-    return RequestClient.request<PayCardBagSuccessEntity>(
-        (json) => PayCardBagSuccessEntity.fromJson(json),
+    return AppRequestClient.request<PayCardBagSuccessEntity>(
         '/store/common/payStoreCardBag',
         {'card_id': cardBagId, 'paypassword': paypassword});
   }
-
-
 }
