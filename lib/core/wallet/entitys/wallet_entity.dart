@@ -1,3 +1,27 @@
+class WalletListEntity {
+  List<WalletEntity> cardBagList;
+
+  WalletListEntity({this.cardBagList});
+
+  WalletListEntity.fromJson(Map<String, dynamic> json) {
+    if (json['cardBagList'] != null) {
+      cardBagList = new List<WalletEntity>();
+      json['cardBagList'].forEach((v) {
+        cardBagList.add(new WalletEntity.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.cardBagList != null) {
+      data['expenseCalendar'] =
+          this.cardBagList.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
 class WalletEntity {
   String storeName;
   List<CardBagList> cardBagList;
@@ -31,7 +55,8 @@ class CardBagList {
   List<Record> record;
   String storeName;
 
-  CardBagList({this.count, this.name, this.record, this.storeName,this.createTime});
+  CardBagList(
+      {this.count, this.name, this.record, this.storeName, this.createTime});
 
   CardBagList.fromJson(Map<String, dynamic> json) {
     count = json['count'];

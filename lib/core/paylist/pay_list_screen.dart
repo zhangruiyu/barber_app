@@ -1,11 +1,10 @@
 import 'dart:async';
 
-import 'package:barber_common/base/BasePageRoute.dart';
 import 'package:barber_app/core/paylist/entitys/pay_list_entity.dart';
 import 'package:barber_app/helpers/request_helper.dart';
+import 'package:barber_common/base/BasePageRoute.dart';
 import 'package:barber_common/widget/StatePageState.dart';
 import 'package:barber_common/widget/Toolbar.dart';
-import 'package:barber_common/widget/divider.dart';
 import 'package:flutter/material.dart';
 import 'package:refresh_wow/refresh_wow.dart';
 
@@ -48,15 +47,15 @@ class _PayListScreenState extends State<PayListScreen> {
   Future<dynamic> _fetchData() {
     final Completer<dynamic> completer = new Completer<dynamic>();
 
-    RequestHelper.expenseCalendar(pageIndex).then((List<PayListEntity> data) {
-      completer.complete(data);
+    RequestHelper.expenseCalendar(pageIndex).then((PayListEntity data) {
+      completer.complete(data.expenseCalendar);
       if (pageIndex == 0) {
-        localList = data;
+        localList = data.expenseCalendar;
       } else {
-        localList.addAll(data);
+        localList.addAll(data.expenseCalendar);
       }
       ++pageIndex;
-      hasMore = (data).length >= 10;
+      hasMore = (data.expenseCalendar).length >= 10;
       refreshListViewStateKey.currentState
           ?.setData(localList, hasMore ? _handleLoadMore : null);
     }).catchError((onError) {
@@ -65,11 +64,11 @@ class _PayListScreenState extends State<PayListScreen> {
     return completer.future;
   }
 
-  Future<List<PayListEntity>> payList() async {
-    final Completer<List<PayListEntity>> completer =
-        new Completer<List<PayListEntity>>();
-    RequestHelper.expenseCalendar(0).then((List<PayListEntity> onValue) {
-      completer.complete(onValue);
+  Future<List<PayListItem>> payList() async {
+    final Completer<List<PayListItem>> completer =
+        new Completer<List<PayListItem>>();
+    RequestHelper.expenseCalendar(0).then((PayListEntity onValue) {
+      completer.complete(onValue.expenseCalendar);
     }).catchError((onError) {
       completer.complete(null);
     });
@@ -87,7 +86,7 @@ class _PayListScreenState extends State<PayListScreen> {
         body: StatePage(
           loadData: payList,
           buildContent: (data) {
-            var storeList = data as List<PayListEntity>;
+            var storeList = data as List<PayListItem>;
             return ListView.builder(
               itemCount: storeList.length,
               itemBuilder: (BuildContext context, int index) {

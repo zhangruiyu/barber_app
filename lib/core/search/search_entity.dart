@@ -1,10 +1,33 @@
 class SearchEntity {
+  List<SearchStoreItem> storeList;
+
+  SearchEntity({this.storeList});
+
+  SearchEntity.fromJson(Map<String, dynamic> json) {
+    if (json['storeList'] != null) {
+      storeList = new List<SearchStoreItem>();
+      json['storeList'].forEach((v) {
+        storeList.add(new SearchStoreItem.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.storeList != null) {
+      data['storeList'] = this.storeList.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class SearchStoreItem {
   String name;
   int id;
 
-  SearchEntity({this.id, this.name});
+  SearchStoreItem({this.id, this.name});
 
-  SearchEntity.fromJson(Map<String, dynamic> json) {
+  SearchStoreItem.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
   }

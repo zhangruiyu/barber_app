@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:barber_common/base/BasePageRoute.dart';
 import 'package:barber_app/core/wallet/entitys/wallet_entity.dart';
 import 'package:barber_app/helpers/request_helper.dart';
+import 'package:barber_common/base/BasePageRoute.dart';
 import 'package:barber_common/widget/StatePageState.dart';
 import 'package:barber_common/widget/Toolbar.dart';
 import 'package:flutter/material.dart';
@@ -21,8 +21,8 @@ class _WalletScreenState extends State<WalletScreen> {
   Future<List<WalletEntity>> walletList() async {
     final Completer<List<WalletEntity>> completer =
         new Completer<List<WalletEntity>>();
-    RequestHelper.walletList().then((List<WalletEntity> onValue) {
-      completer.complete(onValue);
+    RequestHelper.walletList().then((WalletListEntity onValue) {
+      completer.complete(onValue.cardBagList);
     }).catchError((onError) {
       completer.complete(null);
     });
@@ -71,8 +71,8 @@ class _WalletScreenState extends State<WalletScreen> {
                               "消费次数:X${record.cardBagCount.toString()}",
                             ),
                             subtitle: Text(
-                              record.createTime.toString()
-                              ,style: theme.textTheme.caption,
+                              record.createTime.toString(),
+                              style: theme.textTheme.caption,
                             ),
                           );
                         }).toList(),
@@ -81,7 +81,10 @@ class _WalletScreenState extends State<WalletScreen> {
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
                             Text("剩余:x${item.count}次"),
-                            Text("购买于:${item.createTime}",style: theme.textTheme.caption,),
+                            Text(
+                              "购买于:${item.createTime}",
+                              style: theme.textTheme.caption,
+                            ),
                           ],
                         ),
                       );

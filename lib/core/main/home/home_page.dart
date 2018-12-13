@@ -3,16 +3,14 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:banner/banner.dart';
-import 'package:barber_common/config/constant.dart';
 import 'package:barber_app/core/main/home/entitys/home_entity.dart';
 import 'package:barber_app/core/main/home/i_refresh.dart';
 import 'package:barber_app/core/main/home_tab_screen.dart';
 import 'package:barber_app/core/search/search_demo_search_delegate.dart';
 import 'package:barber_app/core/search/search_entity.dart';
 import 'package:barber_app/core/store/detail/store_detail_srceen.dart';
-import 'package:barber_app/core/store/queue/store_quque_srceen.dart';
-import 'package:barber_app/core/store/subjects/subjects_screen.dart';
 import 'package:barber_app/helpers/request_helper.dart';
+import 'package:barber_common/config/constant.dart';
 import 'package:barber_common/utils/WindowUtils.dart';
 import 'package:barber_common/utils/toast_utils.dart';
 import 'package:barber_common/widget/BannerShowWidget.dart';
@@ -84,14 +82,14 @@ class _HomePageState extends State<HomePage> with RefreshPage {
   selectStore() async {
     var searchHistory =
         (sp.getStringList("searchHistory") ?? List<String>()).map((strHistory) {
-      return SearchEntity.fromJson(json.decode(strHistory));
+      return SearchStoreItem.fromJson(json.decode(strHistory));
     }).toList();
     if (searchHistory.isEmpty) {
-      searchHistory.add(SearchEntity(id: 1, name: "中原理发店(四惠店)"));
+      searchHistory.add(SearchStoreItem(id: 1, name: "中原理发店(四惠店)"));
     }
     final SearchDemoSearchDelegate _delegate =
         new SearchDemoSearchDelegate(searchHistory);
-    final SearchEntity selected = await showSearch<SearchEntity>(
+    final SearchStoreItem selected = await showSearch<SearchStoreItem>(
       context: context,
       delegate: _delegate,
     );

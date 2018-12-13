@@ -23,6 +23,8 @@ PODS:
     - QCloudCOSXML
   - url_launcher (0.0.1):
     - Flutter
+  - webview_flutter (0.0.1):
+    - Flutter
 
 DEPENDENCIES:
   - barber_common (from `.symlinks/plugins/barber_common/ios`)
@@ -34,6 +36,7 @@ DEPENDENCIES:
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
   - tencent_cos (from `.symlinks/plugins/tencent_cos/ios`)
   - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
+  - webview_flutter (from `.symlinks/plugins/webview_flutter/ios`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -59,6 +62,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/tencent_cos/ios"
   url_launcher:
     :path: ".symlinks/plugins/url_launcher/ios"
+  webview_flutter:
+    :path: ".symlinks/plugins/webview_flutter/ios"
 
 SPEC CHECKSUMS:
   barber_common: ad7a877f906b7682ad33e0d26b995832f291aa88
@@ -72,6 +77,7 @@ SPEC CHECKSUMS:
   shared_preferences: 5a1d487c427ee18fcd3ea1f2a131569481834b53
   tencent_cos: 93850300f1cba6abd94456a65d85401c6f154e77
   url_launcher: 92b89c1029a0373879933c21642958c874539095
+  webview_flutter: 9bd234c07e99632356cba112df56fd1d47d6b6e3
 
 PODFILE CHECKSUM: 1e5af4103afd21ca5ead147d7b81d06f494f51a2
 

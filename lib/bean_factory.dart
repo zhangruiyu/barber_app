@@ -29,8 +29,8 @@ class BeanFactory {
       return PaySuccessEntity.fromJson(json) as T;
     } else if (T.toString() == "SearchEntity") {
       return SearchEntity.fromJson(json) as T;
-    } else if (T.toString() == "WalletEntity") {
-      return WalletEntity.fromJson(json) as T;
+    } else if (T.toString() == "WalletListEntity") {
+      return WalletListEntity.fromJson(json) as T;
     } else if (T.toString() == "HomeEntity") {
       return HomeEntity.fromJson(json) as T;
     } else if (T.toString() == "AccountEntity") {

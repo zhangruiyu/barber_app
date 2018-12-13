@@ -4,9 +4,9 @@ import 'package:barber_app/core/search/search_entity.dart';
 import 'package:barber_app/helpers/request_helper.dart';
 import 'package:flutter/material.dart';
 
-class SearchDemoSearchDelegate extends SearchDelegate<SearchEntity> {
-  final List<SearchEntity> netData = new List<SearchEntity>();
-  final List<SearchEntity> history;
+class SearchDemoSearchDelegate extends SearchDelegate<SearchStoreItem> {
+  final List<SearchStoreItem> netData = new List<SearchStoreItem>();
+  final List<SearchStoreItem> history;
 
   SearchDemoSearchDelegate(this.history);
 
@@ -24,13 +24,13 @@ class SearchDemoSearchDelegate extends SearchDelegate<SearchEntity> {
     );
   }
 
-  Future<List<SearchEntity>> searchStoreByName() async {
-    final Completer<List<SearchEntity>> completer =
-        new Completer<List<SearchEntity>>();
-    RequestHelper.searchStoreByName(query).then((List<SearchEntity> onValue) {
+  Future<List<SearchStoreItem>> searchStoreByName() async {
+    final Completer<List<SearchStoreItem>> completer =
+        new Completer<List<SearchStoreItem>>();
+    RequestHelper.searchStoreByName(query).then((SearchEntity onValue) {
       netData.clear();
-      netData.addAll(onValue);
-      completer.complete(onValue);
+      netData.addAll(onValue.storeList);
+      completer.complete(onValue.storeList);
     }).catchError((onError) {
       completer.complete(null);
     });
@@ -43,11 +43,11 @@ class SearchDemoSearchDelegate extends SearchDelegate<SearchEntity> {
     return new FutureBuilder<dynamic>(
         future: searchStoreByName(),
         initialData: query.isEmpty
-            ? new AsyncSnapshot<List<SearchEntity>>.withData(
+            ? new AsyncSnapshot<List<SearchStoreItem>>.withData(
                 //如果查询没输入找历史记录,如果输入了则请求网络
                 ConnectionState.done,
                 history)
-            : new AsyncSnapshot<List<SearchEntity>>.withData(
+            : new AsyncSnapshot<List<SearchStoreItem>>.withData(
                 ConnectionState.waiting, null),
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           print(snapshot.connectionState);
@@ -57,7 +57,7 @@ class SearchDemoSearchDelegate extends SearchDelegate<SearchEntity> {
               child: new CircularProgressIndicator(),
             );
           } else if (snapshot.connectionState == ConnectionState.done) {
-            var result = snapshot.data as List<SearchEntity>;
+            var result = snapshot.data as List<SearchStoreItem>;
             if (result.length == 0) {
               return new Center(
                 child: new Column(
@@ -71,14 +71,15 @@ class SearchDemoSearchDelegate extends SearchDelegate<SearchEntity> {
             }
             var suggestions = query.isEmpty
                 ? result
-                : result.where((SearchEntity i) =>
+                : result.where((SearchStoreItem i) =>
                     '${i.name}'.contains(query) || '${i.id}'.contains(query));
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: new _SuggestionList(
                 query: query,
-                suggestions:
-                    suggestions.map((SearchEntity i) => '${i.name}').toList(),
+                suggestions: suggestions
+                    .map((SearchStoreItem i) => '${i.name}')
+                    .toList(),
                 onSelected: (String suggestion) {
                   query = suggestion;
                   showResults(context);
@@ -141,8 +142,8 @@ class SearchDemoSearchDelegate extends SearchDelegate<SearchEntity> {
 class _ResultCard extends StatelessWidget {
   const _ResultCard({this.searchDelegate, this.result});
 
-  final SearchEntity result;
-  final SearchDelegate<SearchEntity> searchDelegate;
+  final SearchStoreItem result;
+  final SearchDelegate<SearchStoreItem> searchDelegate;
 
   @override
   Widget build(BuildContext context) {

@@ -15,7 +15,6 @@ import 'package:barber_app/core/store/queue/entitys/add_store_queue_entity.dart'
 import 'package:barber_app/core/store/subjects/entitys/affirm_dialog_show_entity.dart';
 import 'package:barber_app/core/wallet/entitys/wallet_entity.dart';
 import 'package:barber_app/helpers/net_work.dart';
-import 'package:barber_common/helpers/net_work.dart';
 
 class RequestHelper {
   static Future<RegisterEntity> sendRestPasswordCode(String tel) {
@@ -51,23 +50,16 @@ class RequestHelper {
     });
   }
 
-  static Future<List<PayListEntity>> expenseCalendar(int index) {
-    return RequestClient.request<List<PayListEntity>>(
-        (json) => (json as List).map((f) {
-              return PayListEntity.fromJson(f);
-            }).toList(),
-        '/money/common/expenseCalendar',
-        {
-          'index': index,
-          'pageSize': 10,
-        });
+  static Future<PayListEntity> expenseCalendar(int index) {
+    return AppRequestClient.request<PayListEntity>(
+        '/money/common/expenseCalendar', {
+      'index': index,
+      'pageSize': 10,
+    });
   }
 
-  static Future<List<WalletEntity>> walletList() {
-    return RequestClient.request<List<WalletEntity>>(
-      (json) => (json as List).map((f) {
-            return WalletEntity.fromJson(f);
-          }).toList(),
+  static Future<WalletListEntity> walletList() {
+    return AppRequestClient.request<WalletListEntity>(
       '/money/common/cardBagList',
     );
   }
@@ -84,13 +76,9 @@ class RequestHelper {
         '/store/common/storeDetail', {'store_id': storeId});
   }
 
-  static Future<List<SearchEntity>> searchStoreByName(String query) {
-    return RequestClient.request<List<SearchEntity>>(
-        (json) => (json as List).map((f) {
-              return SearchEntity.fromJson(f);
-            }).toList(),
-        '/store/searchStoreByName',
-        {'store_name': query});
+  static Future<SearchEntity> searchStoreByName(String query) {
+    return AppRequestClient.request<SearchEntity>(
+        '/store/searchStoreByName', {'store_name': query});
   }
 
   static Future<AccountEntity> refreshAccount() {
