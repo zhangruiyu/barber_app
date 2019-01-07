@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:barber_app/bean_factory.dart';
+import 'package:barber_app/entity_factory.dart';
 import 'package:barber_common/config/constant.dart';
 import 'package:barber_common/exception/NetException.dart';
 import 'package:barber_common/utils/toast_utils.dart';
@@ -37,14 +37,14 @@ class AppRequestClient {
         debugPrint(json.encode(response.data));
         if (data['code'].toString() == '1003') {
 //        UserHelper.loginOut();
-          return new Future.value(BeanFactory.generateOBJ<T>(response.data));
+          return new Future.value(EntityFactory.generateOBJ<T>(response.data));
         } else if (data['code'].toString() != '200') {
 //        ScaffoldState.showSnackBar(new SnackBar(content: new Text(data['msg'])));
           ToastUtils.toast(data['message']);
           return new Future.error(new NetException(data['code'], data['msg']));
         } else {
           return new Future.value(
-              BeanFactory.generateOBJ<T>(response.data['data']));
+              EntityFactory.generateOBJ<T>(response.data['data']));
         }
       } else {
         if (response.statusCode == 400) {
